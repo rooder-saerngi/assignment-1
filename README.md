@@ -1,4 +1,11 @@
 ﻿# assignment-1
 
-commit 1
-Sorry sir i dont think i can make it to 20 commits or maybe i can idk :(
+commit one :
+Readme.md was made 
+
+commit 2 :
+simulator.py was added to the repo
+
+commit 3 :
+queues were implemented and an array for the traffic light containing [Red,Green]
+
