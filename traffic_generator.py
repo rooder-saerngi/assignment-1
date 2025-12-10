@@ -74,7 +74,7 @@ def traversal():
 
             if not lanes["AL2"].isEmpty() :
                 car = lanes["AL2"].dequeue()
-                lanes["Bl1"].enqueue(car)
+                lanes["BL1"].enqueue(car)
 
             elif not lanes["AL3"].isEmpty():
                 car = lanes["AL3"].dequeue()
@@ -84,7 +84,7 @@ def traversal():
 
             if not lanes["BL2"].isEmpty() :
                 car = lanes["BL2"].dequeue()
-                lanes["Al1"].enqueue(car)
+                lanes["AL1"].enqueue(car)
 
             elif not lanes["BL3"].isEmpty():
                 car = lanes["BL3"].dequeue()
@@ -95,7 +95,7 @@ def traversal():
 
             if not lanes["DL2"].isEmpty() :
                 car = lanes["DL2"].dequeue()
-                lanes["Cl1"].enqueue(car)
+                lanes["CL1"].enqueue(car)
 
             elif not lanes["DL3"].isEmpty():
                 car = lanes["DL3"].dequeue()
