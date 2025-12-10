@@ -1,7 +1,6 @@
 import time
 import threading
 
-
 #Making the class for Queue
 class Queue:
     def __init__(self):
@@ -78,8 +77,8 @@ def traversal():
                 lanes["Bl1"].enqueue(car)
 
             elif not lanes["AL3"].isEmpty():
-                car = lanes["AL2"].dequeue()
-                lanes["BL1"].enqueue(car)
+                car = lanes["AL3"].dequeue()
+                lanes["CL1"].enqueue(car)
 
         if LaneB_Lights == "GREEN" :
 
@@ -89,7 +88,7 @@ def traversal():
 
             elif not lanes["BL3"].isEmpty():
                 car = lanes["BL3"].dequeue()
-                lanes["AL1"].enqueue(car)
+                lanes["DL1"].enqueue(car)
 
 
         if LaneD_lights == "GREEN" :
@@ -100,7 +99,7 @@ def traversal():
 
             elif not lanes["DL3"].isEmpty():
                 car = lanes["DL3"].dequeue()
-                lanes["CL1"].enqueue(car)
+                lanes["AL1"].enqueue(car)
 
         if LaneC_lights == "GREEN" :
 
@@ -110,4 +109,4 @@ def traversal():
 
             elif not lanes["CL3"].isEmpty():
                 car = lanes["CL3"].dequeue()
-                lanes["DL1"].enqueue(car)
+                lanes["BL1"].enqueue(car)
