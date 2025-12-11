@@ -24,8 +24,14 @@ lanes = {
     "CL1": Queue(), "CL2": Queue(), "CL3": Queue(),
     "DL1": Queue(), "DL2": Queue(), "DL3": Queue(),
 }
+
 #Traffic Lights (every ten seconds the lights change )
+laneA_lights = "RED"
+laneB_lights = "RED"
+laneC_lights = "RED"
+laneD_lights = "RED"
 def Lights_Changer():
+    global LaneA_lights, LaneB_Lights, LaneD_lights, LaneC_lights
     Flag = True
     while True :
         if Flag == True :
@@ -33,16 +39,18 @@ def Lights_Changer():
             LaneB_Lights = "RED"
             LaneD_lights = "RED"
             LaneC_lights = "GREEN"
+            print("A:",LaneA_lights,"B:",LaneB_Lights,"D:",LaneD_lights,"C:",LaneC_lights,"\n")
 
             Flag = False
-            time.sleep(10)
+            time.sleep(9)
         else :
             LaneA_lights = "RED"
             LaneB_Lights = "GREEN"
             LaneD_lights = "GREEN"
             LaneC_lights = "RED"
+            print("A:",LaneA_lights,"B:",LaneB_Lights,"D:",LaneD_lights,"C:",LaneC_lights,"\n")
             Flag = True
-            time.sleep(10)
+            time.sleep(9)
 
 
 def generator():
@@ -54,6 +62,7 @@ def generator():
         lanes["BL3"].enqueue(f"car_BL3_{i}")
         lanes["CL3"].enqueue(f"car_CL3_{i}")
         lanes["DL3"].enqueue(f"car_DL3_{i}")
+        print(f"Generated cars {i} in AL3, BL3, CL3, DL3\n")
 
         time.sleep(10)
 
@@ -63,6 +72,7 @@ def generator():
         lanes["BL2"].enqueue(f"car_BL2_{i}")
         lanes["CL2"].enqueue(f"car_CL2_{i}")
         lanes["DL2"].enqueue(f"car_DL2_{i}")
+        print(f"Generated cars {i} in AL2, BL2, CL2, DL2\n")
         i += 1
 
         time.sleep(5)
@@ -75,38 +85,52 @@ def traversal():
             if not lanes["AL2"].isEmpty() :
                 car = lanes["AL2"].dequeue()
                 lanes["BL1"].enqueue(car)
+                print(f"AL2 car moved to BL1\n")
 
             elif not lanes["AL3"].isEmpty():
                 car = lanes["AL3"].dequeue()
                 lanes["CL1"].enqueue(car)
+                print(f"AL3 moved to CL1\n")
 
         if LaneB_Lights == "GREEN" :
 
             if not lanes["BL2"].isEmpty() :
                 car = lanes["BL2"].dequeue()
                 lanes["AL1"].enqueue(car)
+                print(f"BL2 car moved to AL1\n")
 
             elif not lanes["BL3"].isEmpty():
                 car = lanes["BL3"].dequeue()
                 lanes["DL1"].enqueue(car)
-
+                print(f"BL3 car moved to DL1\n")
 
         if LaneD_lights == "GREEN" :
 
             if not lanes["DL2"].isEmpty() :
                 car = lanes["DL2"].dequeue()
                 lanes["CL1"].enqueue(car)
+                print(f"DL2 car moved to CL1\n")
 
             elif not lanes["DL3"].isEmpty():
                 car = lanes["DL3"].dequeue()
                 lanes["AL1"].enqueue(car)
+                print(f"DL3 car moved to AL1\n")
 
         if LaneC_lights == "GREEN" :
 
             if not lanes["CL2"].isEmpty() :
                 car = lanes["CL2"].dequeue()
-                lanes["Dl1"].enqueue(car)
+                lanes["DL1"].enqueue(car)
+                print(f"CL2 car moved to DL1\n")
 
             elif not lanes["CL3"].isEmpty():
                 car = lanes["CL3"].dequeue()
                 lanes["BL1"].enqueue(car)
+                print(f"CL3 car moved to BL1\n")
+
+threading.Thread(target=Lights_Changer,daemon= True).start()
+threading.Thread(target=generator,daemon= True).start()
+threading.Thread(target=traversal,daemon= True).start()
+
+while True :
+    time.sleep(1)
