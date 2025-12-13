@@ -1,5 +1,4 @@
 import time
-import threading
 
 #Making the class for Queue
 class Queue:
@@ -85,52 +84,45 @@ def traversal():
             if not lanes["AL2"].isEmpty() :
                 car = lanes["AL2"].dequeue()
                 lanes["BL1"].enqueue(car)
-                print(f"AL2 car moved to BL1\n")
+                return"AL2 car moved to BL1"
 
             elif not lanes["AL3"].isEmpty():
                 car = lanes["AL3"].dequeue()
                 lanes["CL1"].enqueue(car)
-                print(f"AL3 moved to CL1\n")
+                return"AL3 moved to CL1"
 
         if LaneB_Lights == "GREEN" :
 
             if not lanes["BL2"].isEmpty() :
                 car = lanes["BL2"].dequeue()
                 lanes["AL1"].enqueue(car)
-                print(f"BL2 car moved to AL1\n")
+                return"BL2 car moved to AL1"
 
             elif not lanes["BL3"].isEmpty():
                 car = lanes["BL3"].dequeue()
                 lanes["DL1"].enqueue(car)
-                print(f"BL3 car moved to DL1\n")
+                return"BL3 car moved to DL1"
 
         if LaneD_lights == "GREEN" :
 
             if not lanes["DL2"].isEmpty() :
                 car = lanes["DL2"].dequeue()
                 lanes["CL1"].enqueue(car)
-                print(f"DL2 car moved to CL1\n")
+                return"DL2 car moved to CL1"
 
             elif not lanes["DL3"].isEmpty():
                 car = lanes["DL3"].dequeue()
                 lanes["AL1"].enqueue(car)
-                print(f"DL3 car moved to AL1\n")
+                return"DL3 car moved to AL1"
 
         if LaneC_lights == "GREEN" :
 
             if not lanes["CL2"].isEmpty() :
                 car = lanes["CL2"].dequeue()
                 lanes["DL1"].enqueue(car)
-                print(f"CL2 car moved to DL1\n")
+                return"CL2 car moved to DL1"
 
             elif not lanes["CL3"].isEmpty():
                 car = lanes["CL3"].dequeue()
                 lanes["BL1"].enqueue(car)
-                print(f"CL3 car moved to BL1\n")
-
-threading.Thread(target=Lights_Changer,daemon= True).start()
-threading.Thread(target=generator,daemon= True).start()
-threading.Thread(target=traversal,daemon= True).start()
-
-while True :
-    time.sleep(1)
+                return"CL3 car moved to BL1"
