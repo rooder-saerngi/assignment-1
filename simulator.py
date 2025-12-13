@@ -1,12 +1,12 @@
 import pygame
 import sys
 import random
-import Traffic_Generator as T
+import Traffic_Generator as tg
 import threading
 
-threading.Thread(target=T.Lights_Changer,daemon= True).start()
-threading.Thread(target=T.generator,daemon= True).start()
-threading.Thread(target=T.traversal,daemon= True).start()
+threading.Thread(target=tg.lights_changer,daemon= True).start()
+threading.Thread(target=tg.generator,daemon= True).start()
+threading.Thread(target=tg.traversal,daemon= True).start()
 pygame.init()
 
 WIDTH, HEIGHT = 1280, 720
@@ -42,3 +42,4 @@ while True:
 
     pygame.display.update()
     clock.tick(FPS)
+)
